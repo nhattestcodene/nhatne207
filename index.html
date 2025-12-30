@@ -1,15 +1,39 @@
 <!-- Code Lỏ VCl-->
 <!-- NhatLoveCode-->
-<!-- NhatLoveCode-->
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Nhìn Gỉ Cu</title>
+
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet"/>
     <link rel="stylesheet" href="/static/css/app.css" />
+
+    
+    <style>
+      .li-xi {
+        position: fixed;
+        top: -60px;
+        font-size: 28px;
+        pointer-events: none;
+        z-index: 9999;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-60px) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
+
   <body class="font-sans antialiased">
     <div
       id="app"
@@ -18,44 +42,25 @@
         "props": {
           "errors": {},
           "name": "Nhật Nè 🥀",
-          "quote": {
-            "message": "",
-            "author": ""
-          },
-          "auth": {
-            "user": null
-          },
+          "quote": { "message": "", "author": "" },
+          "auth": { "user": null },
           "ziggy": {
             "port": null,
             "defaults": [],
             "routes": {
-              "home": {
-                "uri": "/",
-                "methods": ["GET", "HEAD"]
-              },
+              "home": { "uri": "/", "methods": ["GET", "HEAD"] },
               "show-create-form": {
                 "uri": "create-message/{id?}",
                 "methods": ["GET", "HEAD"],
                 "parameters": ["id"]
               },
-              "create-form": {
-                "uri": "create-message",
-                "methods": ["POST"]
-              },
-              "login": {
-                "uri": "login",
-                "methods": ["GET", "HEAD"]
-              },
-              "logout": {
-                "uri": "logout",
-                "methods": ["POST"]
-              },
+              "create-form": { "uri": "create-message", "methods": ["POST"] },
+              "login": { "uri": "login", "methods": ["GET", "HEAD"] },
+              "logout": { "uri": "logout", "methods": ["POST"] },
               "storage.local": {
                 "uri": "storage/{path}",
                 "methods": ["GET", "HEAD"],
-                "wheres": {
-                  "path": ".*"
-                },
+                "wheres": { "path": ".*" },
                 "parameters": ["path"]
               }
             },
@@ -65,11 +70,7 @@
           "client": {
             "fontName": "Mali",
             "color": "#ff0019",
-            "messages": [
-              "🧧",
-              "Happy New Year",
-              "🧧"   
-            ],
+            "messages": ["🧧", "Happy New Year", "🧧"],
             "music": "//nhattestcodene.github.io/Music/beta.mp3"
           },
           "clientId": "/"
@@ -78,11 +79,32 @@
         "version": "",
         "clearHistory": false,
         "encryptHistory": false
+      }'
+    ></div>
+
+    <script type="module" src="/static/js/app.js"></script>
+    <script type="module" src="/static/js/home.js"></script>
+
+    
+    <script>
+      function createLiXi() {
+        const liXi = document.createElement("div");
+        liXi.className = "li-xi";
+        liXi.innerText = "🧧";
+
+        liXi.style.left = Math.random() * window.innerWidth + "px";
+        liXi.style.animationDuration = (Math.random() * 1.5 + 1.5) + "s";
+        liXi.style.fontSize = (Math.random() * 20 + 24) + "px";
+
+        document.body.appendChild(liXi);
+
+        setTimeout(() => {
+          liXi.remove();
+        }, 4000);
       }
-      '
-    >
-  </div>
-  <script type="module" src="/static/js/app.js"></script>
-  <script type="module" src="/static/js/home.js"></script>
+
+      
+      setInterval(createLiXi, 150); 
+    </script>
   </body>
 </html>
